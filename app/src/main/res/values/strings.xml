@@ -19,6 +19,12 @@
     <string name="listado_tablas">Listado Tablas</string>
     <string name="listado">Listado</string>
     <string name="numero">N°</string>
+    <string name="error1">Digite la cedula</string>
+    <string name="error2">Digite el nombre</string>
+    <string name="error3">Digite el apellido</string>
+    <string name="mensaje1">Seleccione por lo menos un pasatiempo</string>
+    <string name="mensaje2">Persona guardada exitosamente!</string>
+    <string name="errorpasatiempo">Por favor seleccione un pasatiempo</string>
     <string-array name="opciones_principal">
         <item>@string/registrar</item>
         <item>@string/listado_tablas</item>
