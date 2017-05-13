@@ -159,4 +159,14 @@ public class Registrar extends AppCompatActivity {
             }
         }
     }
+
+    public void modificar(View v){
+        Persona p;
+        if (validarCedula()){
+            p=Datos.buscarPersona(getApplicationContext(),cajaCedula.getText().toString());
+            if (p!=null){
+
+            }
+        }
+    }
 }

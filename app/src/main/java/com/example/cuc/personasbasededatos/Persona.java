@@ -120,4 +120,37 @@ public class Persona {
         //Cerrar conexión
         db.close();
     }
+
+    public void modificar(Context conexto){
+        //declarar las variables
+        String sql;
+        SQLiteDatabase db;
+
+        //Abrir ña conexión de base de datos en modo escritura
+        PersonasSQLiteOpenHelper  aux=new PersonasSQLiteOpenHelper(conexto,"DBPersonas",null,1);
+        db=aux.getWritableDatabase();
+
+        //insertar version 1
+
+        sql="UPDATE Personas set nombre='"+this.getNombre()+
+                "',apellido ='"+this.getApellido()+
+                "',sexo ='"+this.getSexo()
+                +"',pasatiempo ='"+this.getPasatiempo()+
+                "where cedula ='"+this.getCedula()+"'";
+        db.execSQL(sql);
+
+        //forma 2
+        /*ContentValues nuevoRegistro=new ContentValues();
+        nuevoRegistro.put("foto",this.getFoto());
+        nuevoRegistro.put("cedula",this.getCedula());
+        nuevoRegistro.put("nombre",this.getNombre());
+        nuevoRegistro.put("apellido",this.getSexo());
+        nuevoRegistro.put("sexo",this.getSexo());
+        nuevoRegistro.put("pasatiempo",this.getPasatiempo());
+
+        db.insert("Personas",null,nuevoRegistro);*/
+
+        //Cerrar conexión
+        db.close();
+    }
 }
