@@ -1,5 +1,6 @@
 package com.example.cuc.personasbasededatos;
 
+import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 public class Registrar extends AppCompatActivity {
     private EditText cajaCedula,cajaNombre,cajaApellido;
@@ -42,16 +44,16 @@ public class Registrar extends AppCompatActivity {
             else sexo=getResources().getString(R.string.femenino);
 
             if (chkProgramar.isChecked()){
-                pasatiempo=getResources().getString(R.string.programar)+",";
+                pasatiempo=getResources().getString(R.string.programar)+", ";
             }
             if (chkLeer.isChecked()){
-                pasatiempo=pasatiempo+getResources().getString(R.string.leer)+",";
+                pasatiempo=pasatiempo+getResources().getString(R.string.leer)+", ";
             }
             if (chkBailar.isChecked()){
-                pasatiempo=pasatiempo+getResources().getString(R.string.bailar);
+                pasatiempo=pasatiempo+getResources().getString(R.string.bailar)+", " ;
             }
             //Le quita el espacio y la "," al final
-            pasatiempo=pasatiempo.substring(pasatiempo.length()-1);
+            pasatiempo=pasatiempo.substring(0,pasatiempo.length()-2);
             p = new Persona(foto,cedula,nombre,apellido,sexo,pasatiempo);
             p.guardar(getApplicationContext());
             new AlertDialog.Builder(this).setMessage(getResources().getString(R.string.mensaje2)).setCancelable(true).show();
@@ -107,5 +109,54 @@ public class Registrar extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+    public void buscar(View v){
+        Persona p;
+        if (validarCedula()){
+            p=Datos.buscarPersona(getApplicationContext(),cajaCedula.getText().toString());
+            if (p!=null){
+                cajaNombre.setText(p.getNombre());
+                cajaApellido.setText(p.getApellido());
+
+                if (p.getSexo().equalsIgnoreCase(getResources().getString(R.string.masculino)))rMasculino.setChecked(true);
+                else rFemenino.setChecked(true);
+
+                if (p.getPasatiempo().contains(getResources().getString(R.string.programar)))chkProgramar.setChecked(true);
+                if (p.getPasatiempo().contains(getResources().getString(R.string.leer)))chkLeer.setChecked(true);
+                if (p.getPasatiempo().contains(getResources().getString(R.string.bailar)))chkBailar.setChecked(true);
+            }
+        }
+
+    }
+
+    public void eliminar(View v){
+        Persona p;
+        if (validarCedula()){
+            p=Datos.buscarPersona(getApplicationContext(),cajaCedula.getText().toString());
+            if (p!=null){
+                AlertDialog.Builder ventana=new AlertDialog.Builder(this);
+                ventana.setTitle("Confirmacion");
+                ventana.setMessage("¿Esta seguro que desea eliminar esta perona?");
+                ventana.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Persona p;
+                        p=Datos.buscarPersona(getApplicationContext(),cajaCedula.getText().toString());
+                        p.eliminar(getApplicationContext());
+                        Toast.makeText(getApplicationContext(),getResources().getString(R.string.mensaje3),
+                                Toast.LENGTH_SHORT).show();
+                        limpiar();
+                    }
+                });
+                ventana.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        cajaCedula.requestFocus();
+                    }
+                });
+                ventana.show();
+            }
+        }
     }
 }

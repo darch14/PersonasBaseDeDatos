@@ -10,49 +10,61 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.cuc.personasbasededatos.Listado">
 
-    <TableLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:stretchColumns="*">
+        android:layout_height="match_parent">
 
-        <TableRow
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:text="@string/numero"
+            <TableLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView8" />
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:stretchColumns="*"
+                android:id="@+id/tbtabla">
 
-            <TextView
-                android:text="@string/cedula"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView7" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal">
 
-            <TextView
-                android:text="@string/nombre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView6" />
+                    <TextView
+                        android:text="@string/numero"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView8" />
 
-            <TextView
-                android:text="@string/sexo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView5" />
+                    <TextView
+                        android:text="@string/cedula"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView7" />
 
-            <TextView
-                android:text="@string/pasatiempo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView2" />
-        </TableRow>
+                    <TextView
+                        android:text="@string/nombre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView6" />
 
-    </TableLayout>
+                    <TextView
+                        android:text="@string/sexo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView5" />
+
+                    <TextView
+                        android:text="@string/pasatiempo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView2" />
+                </TableRow>
+
+            </TableLayout>
+        </HorizontalScrollView>
+    </ScrollView>
+
 </RelativeLayout>

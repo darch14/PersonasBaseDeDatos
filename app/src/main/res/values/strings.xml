@@ -24,6 +24,7 @@
     <string name="error3">Digite el apellido</string>
     <string name="mensaje1">Seleccione por lo menos un pasatiempo</string>
     <string name="mensaje2">Persona guardada exitosamente!</string>
+    <string name="mensaje3">Persona eliminada exitosamente!</string>
     <string name="errorpasatiempo">Por favor seleccione un pasatiempo</string>
     <string-array name="opciones_principal">
         <item>@string/registrar</item>
