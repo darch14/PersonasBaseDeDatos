@@ -57,6 +57,7 @@ public class Registrar extends AppCompatActivity {
             p = new Persona(foto,cedula,nombre,apellido,sexo,pasatiempo);
             p.guardar(getApplicationContext());
             new AlertDialog.Builder(this).setMessage(getResources().getString(R.string.mensaje2)).setCancelable(true).show();
+            //Toast.makeText(getApplicationContext(), "Persona Guardada Exitosamente",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -161,11 +162,35 @@ public class Registrar extends AppCompatActivity {
     }
 
     public void modificar(View v){
-        Persona p;
+        Persona p,p2;
+        String nombre,apellido,sexo,pasatiempo="";
         if (validarCedula()){
             p=Datos.buscarPersona(getApplicationContext(),cajaCedula.getText().toString());
             if (p!=null){
 
+                nombre = cajaNombre.getText().toString();
+                apellido=cajaApellido.getText().toString();
+                if(rMasculino.isChecked()) sexo = getResources().getString(R.string.masculino);
+                else sexo = getResources().getString(R.string.femenino);
+
+                if(chkProgramar.isChecked()){
+                    pasatiempo = getResources().getString(R.string.programar)+", ";
+                }
+                if(chkLeer.isChecked()){
+                    pasatiempo = pasatiempo+getResources().getString(R.string.leer)+", ";
+                }
+                if(chkBailar.isChecked()){
+                    pasatiempo = pasatiempo+getResources().getString(R.string.bailar)+", ";
+                }
+
+                pasatiempo = pasatiempo.substring(0,pasatiempo.length()-2);
+                p2 = new Persona(p.getFoto(),p.getCedula(),nombre,apellido,sexo,pasatiempo);
+                p2.modificar(getApplicationContext());
+
+                Toast.makeText(getApplicationContext(), "Persona Modificada Exitosamente",
+                        Toast.LENGTH_SHORT).show();
+
+                limpiar();
             }
         }
     }
